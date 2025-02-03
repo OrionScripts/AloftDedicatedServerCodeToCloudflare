@@ -1,0 +1,33 @@
+export default {
+    async fetch(request, env) {
+        try {
+            if (request.method === "POST") {
+                const body = await request.json();
+                if (!body.code) {
+                    return new Response("Invalid request: Missing 'code'", { status: 400 });
+                }
+
+                // Store only the string representation of the code
+                await env.JOIN_CODES.put("latest_code", body.code.toString());
+
+                return new Response("Code Updated", { status: 200 });
+            }
+
+            if (request.method === "GET") {
+                const code = await env.JOIN_CODES.get("latest_code");
+                if (!code) {
+                    return new Response("No code available", { status: 404 });
+                }
+
+                // Custom message format
+                const message = `Today's Server Code Is:\n\n${code}\n\nENJOY!`;
+
+                return new Response(message, { headers: { "Content-Type": "text/plain" } });
+            }
+
+            return new Response("Invalid Request", { status: 400 });
+        } catch (error) {
+            return new Response("Worker Error: " + error.message, { status: 500 });
+        }
+    }
+};
