@@ -1,5 +1,5 @@
-$codeFile = "I:\aloftdedicatedserver\Aloft\ServerRoomCode.txt"
-$workerURL = "https://alofttest.orion880916.workers.dev/"
+$codeFile = "PATH_TO_YOUR_SERVER_ROOM_CODE_TEXT_FILE"
+$workerURL = "URL_FOR_YOUR_CLOUDFLARE_WORKER"
 
 $code = Get-Content $codeFile -Raw
 $body = @{ "code" = $code.Trim() } | ConvertTo-Json -Compress  # <-- Compress JSON
