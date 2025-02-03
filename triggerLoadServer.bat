@@ -1,6 +1,6 @@
 @echo off
 :start
-start "" "I:\aloftdedicatedserver\Aloft\AloftServerNoGuiLoad.exe"
+start "" "PATH\TO\EXE\AloftServerNoGuiLoad.exe"
 
 :watchdog
 timeout /t 10 /nobreak >nul
