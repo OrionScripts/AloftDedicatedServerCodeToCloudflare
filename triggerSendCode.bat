@@ -1,1 +1,1 @@
-start "" "I:\aloftdedicatedserver\Aloft\SendCodeToCloudFlare.exe"
+start "" "PATH\TO\CLOUDFLARE_EXE\SendCodeToCloudFlare.exe"
