@@ -19,10 +19,39 @@ export default {
                     return new Response("No code available", { status: 404 });
                 }
 
-                // Custom message format
-                const message = `Today's Server Code Is:\n\n${code}\n\nENJOY!`;
+                // HTML Response with larger font
+                const html = `
+                    <html>
+                    <head>
+                        <title>Server Room Code</title>
+                        <style>
+                            body { 
+                                font-family: Arial, sans-serif; 
+                                text-align: center; 
+                                padding: 50px; 
+                                background-color: #121212; 
+                                color: white;
+                            }
+                            .code-container {
+                                font-size: 48px; 
+                                font-weight: bold;
+                                margin-top: 20px;
+                            }
+                            .message {
+                                font-size: 24px;
+                                margin-top: 10px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="message">Today's Server Code Is:</div>
+                        <div class="code-container">${code}</div>
+                        <div class="message">ENJOY!</div>
+                    </body>
+                    </html>
+                `;
 
-                return new Response(message, { headers: { "Content-Type": "text/plain" } });
+                return new Response(html, { headers: { "Content-Type": "text/html" } });
             }
 
             return new Response("Invalid Request", { status: 400 });
